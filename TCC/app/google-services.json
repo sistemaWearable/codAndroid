@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "99228183318",
+    "firebase_url": "https://teste-tcc-91fcc.firebaseio.com",
+    "project_id": "teste-tcc-91fcc",
+    "storage_bucket": "teste-tcc-91fcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99228183318:android:911ce5ddb12e5f28567e37",
+        "android_client_info": {
+          "package_name": "tcc.com.br.tcc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99228183318-i25qboj6n09lmigq3jkaqfistdf9e7o2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG2q-WJxh5wA5XJDBHBg789m4c-2UobAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99228183318-i25qboj6n09lmigq3jkaqfistdf9e7o2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

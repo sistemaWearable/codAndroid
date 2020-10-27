@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CadastroAgenda"
+    android:background="@android:color/white" >
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Este cadastro está ?"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.332"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_chkSexta" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkSabado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Sabado"
+        android:textColor="@color/colorPrimary"
+        android:checked="true"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_txtMinuto" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkSexta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sexta"
+        android:textColor="@color/colorPrimary"
+        android:checked="true"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_agenda_chkQuinta"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_chkQuinta" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkQuinta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:layout_marginTop="8dp"
+        android:text="Quinta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_agenda_chkQuarta"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_chkQuarta" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkQuarta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:layout_marginTop="16dp"
+        android:text="Quarta"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_agenda_txtMinuto"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_agenda_txtHora"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_txtMinuto" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkTerca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="Terça"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_agenda_chkSegunda"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_chkSegunda" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkSegunda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="Segunda"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_agenda_chkDomingo"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_chkDomingo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cadastro_formulario_representante_nome"
+        style="@style/CorDoHintTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_agenda_txtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome da Tarefa" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cadastro_formulario_agenda_palchave1"
+        style="@style/CorDoHintTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_representante_nome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_agenda_txtPalChave1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Palavra chave 1"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cadastro_formulario_agenda_palchave2"
+        style="@style/CorDoHintTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_agenda_palchave1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cadastro_agenda_txtPalChave2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Palavra chave 2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Dias e Hora"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_agenda_palchave2"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_agenda_palchave2"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_agenda_palchave2" />
+
+    <EditText
+        android:id="@+id/cadastro_agenda_txtHora"
+        android:theme="@style/CorDoHintTheme"
+        style="@style/CorDoHintTheme"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColorHint="@color/colorPrimary"
+        android:inputType="number"
+        android:maxLength="2"
+        android:digits="0123456789"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text=":"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cadastro_agenda_txtMinuto"
+        app:layout_constraintStart_toEndOf="@+id/cadastro_agenda_txtHora"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/cadastro_agenda_txtMinuto"
+        style="@style/CorDoHintTheme"
+        android:theme="@style/CorDoHintTheme"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textColorHint="@color/colorPrimary"
+        android:digits="0123456789"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <CheckBox
+        android:id="@+id/cadastro_agenda_chkDomingo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Domingo"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:checked="true"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_agenda_txtHora" />
+
+    <RadioGroup
+        android:id="@+id/cadastro_agenda_rdgBloq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:theme="@style/CorDoHintTheme"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <RadioButton
+            android:id="@+id/cadastro_agenda_rdbBloqueado"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bloqueado" />
+
+        <RadioButton
+            android:id="@+id/cadastro_agenda_rdbNaoBloq"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Ativo" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
