@@ -23,8 +23,6 @@ public class CadastroAgenda extends AppCompatActivity {
 
     private int posicaoRecebida = -1; //posicao invalida, evitando bug
     private EditText txtNome;
-    private EditText txtPalChave1;
-    private EditText txtPalChave2;
     private EditText txtHora;
     private EditText txtMinuto;
     private CheckBox chkDomingo;
@@ -53,7 +51,7 @@ public class CadastroAgenda extends AppCompatActivity {
             dao = database.getRoomAgendaDAO();
             setTitle("Alterar Tarefa");
             agendaRecebida = (Agenda) dadosRecebidos.getSerializableExtra("agenda");
-            int idRecebido = dao.pegaIdRep(agendaRecebida.getNome_agenda(),
+            int idRecebido = dao.pegaIdAgenda(agendaRecebida.getNome_agenda(),
                     agendaRecebida.getPalavra_chave1(), agendaRecebida.getPalavra_chave2());
             agendaRecebida.setId_agenda(idRecebido);
             posicaoRecebida = dadosRecebidos.getIntExtra("posicao", -1);
@@ -64,8 +62,6 @@ public class CadastroAgenda extends AppCompatActivity {
     private void preencheCampos(Agenda agendaRecebida) {
         //preenche os campos recebidos na alteração
         txtNome.setText(agendaRecebida.getNome_agenda());
-        txtPalChave1.setText(agendaRecebida.getPalavra_chave1());
-        txtPalChave2.setText(agendaRecebida.getPalavra_chave2());
         txtHora.setText(agendaRecebida.getHora().substring(0, 2));
         txtMinuto.setText(agendaRecebida.getHora().substring(3, 5));
         //preenche checkbox conforme o posicionado
@@ -82,8 +78,6 @@ public class CadastroAgenda extends AppCompatActivity {
 
     private void inicializaCampos() {
         txtNome = findViewById(R.id.cadastro_agenda_txtNome);
-        txtPalChave1 = findViewById(R.id.cadastro_agenda_txtPalChave1);
-        txtPalChave2 = findViewById(R.id.cadastro_agenda_txtPalChave2);
         txtHora = findViewById(R.id.cadastro_agenda_txtHora);
         txtMinuto = findViewById(R.id.cadastro_agenda_txtMinuto);
         chkDomingo = findViewById(R.id.cadastro_agenda_chkDomingo);
@@ -142,15 +136,15 @@ public class CadastroAgenda extends AppCompatActivity {
         int flagBloqueado = verificaRadioButton(rdbBloqueado, rdbNaoBloq);
 
         //valida campos obrigatórios
-        if (validaPreenchimento(txtNome) || validaPreenchimento(txtPalChave1) || validaPreenchimento(txtPalChave2)
+        if (validaPreenchimento(txtNome)
                 || validaPreenchimento(txtHora) || validaPreenchimento(txtMinuto)) {
             Toast.makeText(this, "Preencha todos os campos para salvar", Toast.LENGTH_LONG).show();
         } else {
             if (validaHora(txtHora.getText().toString(), txtMinuto.getText().toString()) == true) {
                 if(dadosRecebidos.hasExtra("agenda")){
                     agendaRecebida.setNome_agenda(txtNome.getText().toString());
-                    agendaRecebida.setPalavra_chave1(txtPalChave1.getText().toString());
-                    agendaRecebida.setPalavra_chave2(txtPalChave2.getText().toString());
+                    agendaRecebida.setPalavra_chave1("");
+                    agendaRecebida.setPalavra_chave2("");
                     agendaRecebida.setHora(txtHoraFinal);
                     agendaRecebida.setDomingo(flagDomingo);
                     agendaRecebida.setSegunda(flagSegunda);
@@ -169,8 +163,8 @@ public class CadastroAgenda extends AppCompatActivity {
                 else{
                     //Adiciona no model
                     Agenda agenda = new Agenda(txtNome.getText().toString(),
-                            txtPalChave1.getText().toString(),
-                            txtPalChave2.getText().toString(),
+                            "",//palavra chaves ficarão em branco
+                            "",
                             txtHoraFinal,
                             flagDomingo,
                             flagSegunda,

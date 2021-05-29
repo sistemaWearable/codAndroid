@@ -15,12 +15,22 @@ import androidx.room.Room;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 import tcc.com.br.tcc.R;
+import tcc.com.br.tcc.asynctask.representante.AlteraRepresentanteTask;
+import tcc.com.br.tcc.asynctask.representante.BaseRepresentanteAsyncTask;
+import tcc.com.br.tcc.asynctask.representante.InsereRepresentanteTask;
 import tcc.com.br.tcc.database.WearableDatabase;
 import tcc.com.br.tcc.database.dao.RoomRepresentanteDAO;
 import tcc.com.br.tcc.model.Representante;
+import tcc.com.br.tcc.retrofit.TccRetrofit;
+import tcc.com.br.tcc.retrofit.service.RepresentanteService;
 import tcc.com.br.tcc.ui.recyclerview.adapter.ListaRepAdapter;
 import tcc.com.br.tcc.ui.recyclerview.adapter.listener.OnItemClickListenerRepresentante;
 import tcc.com.br.tcc.ui.recyclerview.helper.callback.RepresentanteItemTouchCallback;
@@ -31,6 +41,8 @@ public class ActRepresentante extends AppCompatActivity {
     private List<Representante> todosRepresentantes;
     private WearableDatabase database;//instancia do banco
     private RoomRepresentanteDAO dao;
+    RepresentanteService service = new TccRetrofit().getRepresentanteService();
+    private DadosCarregadosCallback callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +58,29 @@ public class ActRepresentante extends AppCompatActivity {
     private List<Representante> buscaTodosRepresentantes() {
         database = Room.databaseBuilder(this, WearableDatabase.class, "wearable.db").allowMainThreadQueries().build();
         dao = database.getRoomRepresentanteDAO();
+        Call<List<Representante>> call = service.buscaTodosRep();
+        new BaseRepresentanteAsyncTask<>(() -> {
+            try {
+                Response<List<Representante>> resposta = call.execute();
+                List<Representante> repNovos = resposta.body();
+                dao.salva(repNovos);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return dao.todos();
+        }, repNovos -> {
+            if (repNovos != null) {
+                adapter.atualiza(repNovos);
+            } else {
+                Toast.makeText(ActRepresentante.this,
+                        "Não foi possível buscar os representante da API",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }).execute();
         return dao.todos();
     }
 
-    private void configuraRecyclerView(List<Representante> todosRepresentantes) {
+    public void configuraRecyclerView(List<Representante> todosRepresentantes) {
         RecyclerView listaRepresentante = findViewById(R.id.lista_representante_recyclerview);
         configuraAdapter(todosRepresentantes, listaRepresentante);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RepresentanteItemTouchCallback(adapter, ActRepresentante.this));
@@ -80,17 +111,51 @@ public class ActRepresentante extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null && data.hasExtra("rep")) {
             Representante repRecebido = (Representante) data.getSerializableExtra("rep");
-            adapter.adiciona(repRecebido);
-            dao.insere(repRecebido);
+            Call<Representante> call = service.salva(repRecebido);
+            call.enqueue(new Callback<Representante>() {
+                @Override
+                @EverythingIsNonNull
+                public void onResponse(Call<Representante> call, Response<Representante> response) {
+                    if (response.isSuccessful()) {
+                        Representante repNovo = response.body();
+                        if (repNovo != null) {
+                          new InsereRepresentanteTask(dao, adapter, repNovo).execute();
+                        }
+                    }else{
+                        callback.quandoFalha("Resposta não sucedida");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Representante> call, Throwable t) {
+                        callback.quandoFalha("Falha de Comunicação: "+ t.getMessage());
+                }
+            });
         }
 
         if (requestCode == 2 && resultCode == Activity.RESULT_OK && data != null && data.hasExtra("rep")) {
             Representante representanteRecebido = (Representante) data.getSerializableExtra("rep");
             int posicaoRecebida = data.getIntExtra("posicao", -1);
             if (posicaoRecebida > -1) {
-                dao.altera(representanteRecebido);
-                // new DAORepresentanteTeste().altera(posicaoRecebida, repRecebido);
-                adapter.altera(posicaoRecebida, representanteRecebido);
+                Call<Representante> call = service.edita(representanteRecebido.getId_rep(),representanteRecebido);
+                call.enqueue(new Callback<Representante>() {
+                    @Override
+                    public void onResponse(Call<Representante> call, Response<Representante> response) {
+                        if (response.isSuccessful()) {
+                            Representante repNovo = response.body();
+                            if (repNovo != null) {
+                                new AlteraRepresentanteTask(dao, adapter, representanteRecebido, posicaoRecebida).execute();
+                            }
+                        }else{
+                            callback.quandoFalha("Resposta não sucedida");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Representante> call, Throwable t) {
+                        callback.quandoFalha("Falha de Comunicação: "+ t.getMessage());
+                    }
+                });
             } else {
                 Toast.makeText(ActRepresentante.this, "Ocorreu erro na alteração do Representante", Toast.LENGTH_LONG);
             }
@@ -113,5 +178,9 @@ public class ActRepresentante extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+    }
+
+    public interface DadosCarregadosCallback<T>{
+        void quandoFalha(String erro);
     }
 }

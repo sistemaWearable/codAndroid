@@ -13,6 +13,7 @@ import java.util.List;
 
 import tcc.com.br.tcc.R;
 import tcc.com.br.tcc.model.Agenda;
+import tcc.com.br.tcc.model.Representante;
 import tcc.com.br.tcc.ui.recyclerview.adapter.listener.OnItemClickListenerAgenda;
 
 public class ListaAgendaAdapter extends RecyclerView.Adapter<ListaAgendaAdapter.AgendaViewHolder> {
@@ -63,6 +64,12 @@ public class ListaAgendaAdapter extends RecyclerView.Adapter<ListaAgendaAdapter.
     public void remove(int posicao) {
         agendas.remove(posicao);
         notifyItemRemoved(posicao);
+    }
+    public void atualiza(List<Agenda> agenda) {
+        notifyItemRangeRemoved(0 , this.agendas.size());
+        this.agendas.clear();
+        this.agendas.addAll(agenda);
+        this.notifyItemRangeInserted(0, this.agendas.size());
     }
 
 

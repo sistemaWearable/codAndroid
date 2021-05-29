@@ -7,82 +7,13 @@
     android:background="@android:color/white"
     tools:context=".ui.ActEstatisticas">
 
-    <TextView
-        android:id="@+id/tela_estatistica_txtResultado4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/tela_estatistica_txtOcorrencia4"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtResultado3"
-        tools:text="120/80 mmHg" />
-
-    <TextView
-        android:id="@+id/tela_estatistica_txtOcorrencia4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/tela_estatistica_txtOcorrencia3"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtOcorrencia3"
-        tools:text="Estatística 4:" />
-
-    <TextView
-        android:id="@+id/tela_estatistica_txtResultado3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/tela_estatistica_txtOcorrencia3"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtResultado2"
-        tools:text="120/80 mmHg" />
-
-    <TextView
-        android:id="@+id/tela_estatistica_txtOcorrencia3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/tela_estatistica_txtOcorrencia2"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtOcorrencia2"
-        tools:text="Estatística 3:" />
-
-    <TextView
-        android:id="@+id/tela_estatistica_txtResultado2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/tela_estatistica_txtOcorrencia2"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtResultado1"
-        tools:text="120/80 mmHg" />
-
-    <TextView
-        android:id="@+id/tela_estatistica_txtOcorrencia2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="@+id/tela_estatistica_txtOcorrencia1"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_txtOcorrencia1"
-        tools:text="Estatística 2:" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tela_estatistica_pesquisa_data"
         style="@style/CorDoHintTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="100dp"
         android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,13 +31,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
-        android:id="@+id/tela_estatistica_btnPesquisar"
+        android:id="@+id/tela_estatistica_btnCalendario"
         android:layout_width="49dp"
         android:layout_height="37dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/borda_imagebutton"
         android:scaleType="center"
-        android:src="@drawable/ic_action_pesquisar"
+        android:src="@drawable/ic_action_calendar"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="@+id/tela_estatistica_pesquisa_data"
         app:layout_constraintStart_toEndOf="@+id/tela_estatistica_pesquisa_data"
@@ -125,27 +56,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tela_estatistica_txtOcorrencia1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/tela_estatistica_btnTemperatura"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
+        android:layout_marginTop="100dp"
+        android:text="Verificar Temperatura"
+        android:textColor="@android:color/white"
+        android:background="@drawable/borda_button"
+        app:layout_constraintEnd_toEndOf="@+id/tela_estatistica_btnCalendario"
         app:layout_constraintStart_toStartOf="@+id/tela_estatistica_pesquisa_data"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_pesquisa_data"
-        tools:text="Estatística 1:" />
+        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_pesquisa_data" />
 
-    <TextView
-        android:id="@+id/tela_estatistica_txtResultado1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/tela_estatistica_btnBatimento"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/tela_estatistica_txtOcorrencia1"
-        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_pesquisa_data"
-        tools:text="120/80 mmHg" />
+        android:layout_marginTop="32dp"
+        android:text="Verificar Batimento"
+        android:textColor="@android:color/white"
+        android:background="@drawable/borda_button"
+        app:layout_constraintEnd_toEndOf="@+id/tela_estatistica_btnTemperatura"
+        app:layout_constraintStart_toStartOf="@+id/tela_estatistica_btnTemperatura"
+        app:layout_constraintTop_toBottomOf="@+id/tela_estatistica_btnTemperatura" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

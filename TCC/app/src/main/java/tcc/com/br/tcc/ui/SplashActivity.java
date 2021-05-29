@@ -1,47 +1,48 @@
 package tcc.com.br.tcc.ui;
 
+import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.aware.SubscribeConfig;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.Task;
+import androidx.core.app.ActivityCompat;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
+import java.util.concurrent.TimeUnit;
 
 import tcc.com.br.tcc.R;
+import tcc.com.br.tcc.workmanager.EstatisticasWorker;
 
 public class SplashActivity extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        validaPermissoesSMS();
         Handler handle = new Handler();
         handle.postDelayed(new Runnable() {
-            @Override public void run() {
-                mostraLogin();
+            @Override
+            public void run() {
+                chamaMenuPrincipal();
             }
         }, 2500);
+
     }
 
-    private void mostraLogin() {
-        if(googlePlayServiceAceitavel(this) == 0){
+    private void chamaMenuPrincipal() {
         Intent intent = new Intent(this, MenuPrincipal.class);
+
+
         startActivity(intent);
+
         finish();
-        }
-        else{
-            Toast.makeText(this,
-                    "O seu Google Play Service está desatualizado, por favor atualize para usar esse aplicativo", Toast.LENGTH_LONG).show();
-            finish();
-        }
     }
 
-    public int googlePlayServiceAceitavel(Context context){
-        int resultado = new GoogleApiAvailability().isGooglePlayServicesAvailable(context);
-        return resultado;
+    private void validaPermissoesSMS() {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);//pede a permissão para SMS
     }
 }

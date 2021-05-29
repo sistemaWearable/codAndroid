@@ -2,6 +2,7 @@ package tcc.com.br.tcc.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -27,4 +28,12 @@ public interface RoomRepresentanteDAO {
     @Query("SELECT id_rep FROM Representante WHERE nome_rep = :nome and numero_rep = :numero")
     int pegaIdRep(String nome, String numero);
 
+    @Query("SELECT * FROM Representante WHERE nome_rep = :nome and numero_rep = :numero")
+    Representante pegaRepNomeNumero(String nome, String numero);
+
+    @Query("SELECT id_rep FROM Representante WHERE id_rep = :id")
+    int pegaRepPorID(int id);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void salva(List<Representante> repNovos);
 }

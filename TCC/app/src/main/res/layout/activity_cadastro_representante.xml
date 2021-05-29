@@ -43,8 +43,11 @@
             android:id="@+id/cadastro_representante_txtNumero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Número de Celular"
-            android:inputType="phone" />
+            android:hint="Número do Celular (Com DDD)"
+            android:maxLength="11"
+            android:inputType="phone"
+
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -52,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:text="@string/lblAvisoDadosRepresentante"
         android:textAlignment="center"
@@ -62,5 +65,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cadastro_representante_btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Salvar"
+        android:textColor="@android:color/white"
+        android:background="@drawable/borda_button"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_repr_numero"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_repr_numero"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_repr_numero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,10 +20,4 @@ public interface RoomEstatisticaDAO {
     @Query("SELECT * FROM Estatistica WHERE cod_ocorrencia = 2 and data_ocorrencia = :data")
     List<Estatistica> todasOcorrencias2(String data);
 
-    @Query("SELECT * FROM Estatistica WHERE cod_ocorrencia = 3 and data_ocorrencia = :data")
-    List<Estatistica> todasOcorrencias3(String data);
-
-    @Query("SELECT * FROM Estatistica WHERE cod_ocorrencia = 4 and data_ocorrencia = :data")
-    List<Estatistica> todasOcorrencias4(String data);
-
 }

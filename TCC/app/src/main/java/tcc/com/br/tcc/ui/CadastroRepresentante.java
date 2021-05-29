@@ -1,14 +1,14 @@
 package tcc.com.br.tcc.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -26,6 +26,7 @@ public class CadastroRepresentante extends AppCompatActivity {
     private Intent dadosRecebidos;
     private WearableDatabase database;//instancia do banco
     private RoomRepresentanteDAO dao;
+    private Button btnSalvar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,13 @@ public class CadastroRepresentante extends AppCompatActivity {
     private void inicializaCampos() {
         txtNome = findViewById(R.id.cadastro_representante_txtNome);
         txtNumero = findViewById(R.id.cadastro_representante_txtNumero);
+        btnSalvar = findViewById(R.id.cadastro_representante_btnSalvar);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insereRepresentante();
+            }
+        });
     }
 
     private void preencheCampos(Representante representanteRecebido) {
@@ -56,26 +64,21 @@ public class CadastroRepresentante extends AppCompatActivity {
         txtNumero.setText(representanteRecebido.getNumero_rep());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_representante_salvar, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_representante_btnSalvar) {
-            insereRepresentante();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void insereRepresentante() {
 
         //valida se os campos estão preenchidos
         if (txtNome.getText().toString().length() == 0 || txtNumero.getText().toString().length() == 0) {
             Toast.makeText(this, "Preencha todos os campos para salvar", Toast.LENGTH_LONG).show();
-        } else {
+        }
+        else if(txtNumero.getText().toString().length() < 11){
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+            dlgAlert.setMessage("Por favor, preencha o campo de número com o DDD e sem espaços. Exemplo: 11988885555");
+            dlgAlert.setTitle("Número de celular no formato incorreto");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+        }
+        else {
             if (dadosRecebidos.hasExtra("rep")) {// verifica se é alteração
                 representanteRecebido.setNome_rep(txtNome.getText().toString());
                 representanteRecebido.setNumero_rep(txtNumero.getText().toString());

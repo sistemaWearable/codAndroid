@@ -40,8 +40,7 @@ public class ListaRepAdapter extends RecyclerView.Adapter<ListaRepAdapter.Repres
     }
 
     public int getItemIdRep(int posicao){
-        int id = representantes.get(posicao).getId_rep();
-        return id;
+        return representantes.get(posicao).getId_rep();
     }
 
     @Override
@@ -56,6 +55,13 @@ public class ListaRepAdapter extends RecyclerView.Adapter<ListaRepAdapter.Repres
     public void altera(int posicao, Representante rep) {
         representantes.set(posicao, rep);
         notifyDataSetChanged();
+    }
+
+    public void atualiza(List<Representante> rep) {
+        notifyItemRangeRemoved(0 , this.representantes.size());
+        this.representantes.clear();
+        this.representantes.addAll(rep);
+        this.notifyItemRangeInserted(0, this.representantes.size());
     }
 
     public void remove(int posicao) {
@@ -94,4 +100,6 @@ public class ListaRepAdapter extends RecyclerView.Adapter<ListaRepAdapter.Repres
         representantes.add(rep);
         notifyDataSetChanged();
     }
+
+
 }

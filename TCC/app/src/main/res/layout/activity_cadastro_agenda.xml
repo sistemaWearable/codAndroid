@@ -122,58 +122,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cadastro_formulario_agenda_palchave1"
-        style="@style/CorDoHintTheme"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:theme="@style/CorDoHintTheme"
-        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_representante_nome">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cadastro_agenda_txtPalChave1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Palavra chave 1"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cadastro_formulario_agenda_palchave2"
-        style="@style/CorDoHintTheme"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:theme="@style/CorDoHintTheme"
-        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_agenda_palchave1">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cadastro_agenda_txtPalChave2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Palavra chave 2" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Dias e Hora"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_agenda_palchave2"
-        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_agenda_palchave2"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_agenda_palchave2" />
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_formulario_representante_nome"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_formulario_representante_nome" />
 
     <EditText
         android:id="@+id/cadastro_agenda_txtHora"
